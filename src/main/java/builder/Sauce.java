@@ -1,4 +1,4 @@
-package Builder;
+package builder;
 
 public enum Sauce {
     TOMATO_SAUCE,

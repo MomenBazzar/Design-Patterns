@@ -1,6 +1,6 @@
 # Builder Design Pattern
 
-## problem:
+### Problem:
 Let's say we want to create an object that represents a pizza, and the pizza has several properties such as 
 Size size, Boolean onion, Boolean cheese, Boolean olives, Boolean tomato, Boolean corn, Boolean mushroom, Sauce sauceType.
 We could create a Pizza class with all of these properties and their corresponding setters, but this would result 
@@ -15,14 +15,15 @@ are not even mandatory, but in this constructor, the user forced to set value fo
 What will happen when new ingredients will be added?  
 Should this constructor be extended with even more parameters?
 
-for those cases, when a lot of parameters needed to build the object — Builder design pattern is used
+for those cases, when a lot of parameters needed to build the object — builder design pattern is used
 
-## definition
+### Definition
 The builder design pattern is a creational design pattern that allows you to create complex objects by separating the 
 construction of the object from its representation. This pattern is particularly useful when you need to create objects 
 that have a large number of parameters, or when you want to provide a more flexible way of constructing objects.
 
-The implementation below uses Builder class to build the pizza while using only the required parameters, this way you 
+### Solution
+The implementation below uses builder class to build the pizza while using only the required parameters, this way you 
 can freely add parameters with less code modifications, which will not damage the previous built pizza instances.
 
 ```java
@@ -36,7 +37,7 @@ public class Pizza {
     private boolean mushroom;
     private Sauce sauceType;
 
-    private Pizza(Builder builder) {
+    private Pizza(builder builder) {
         this.size = builder.size;
         this.onion = builder.onion;
         this.cheese = builder.cheese;
@@ -79,7 +80,7 @@ public class Pizza {
         return sauceType;
     }
 
-    public static class Builder {
+    public static class builder {
         private Size size;
         private boolean onion;
         private boolean cheese;
@@ -89,42 +90,42 @@ public class Pizza {
         private boolean mushroom;
         private Sauce sauceType = Sauce.TOMATO_SAUCE;
 
-        public Builder setSize(Size size) {
+        public builder setSize(Size size) {
             this.size = size;
             return this;
         }
 
-        public Builder addOnion() {
+        public builder addOnion() {
             this.onion = true;
             return this;
         }
 
-        public Builder addCheese() {
+        public builder addCheese() {
             this.cheese = true;
             return this;
         }
 
-        public Builder addOlives() {
+        public builder addOlives() {
             this.olives = true;
             return this;
         }
 
-        public Builder addTomato() {
+        public builder addTomato() {
             this.tomato = true;
             return this;
         }
 
-        public Builder addCorn() {
+        public builder addCorn() {
             this.corn = true;
             return this;
         }
 
-        public Builder addMushroom() {
+        public builder addMushroom() {
             this.mushroom = true;
             return this;
         }
 
-        public Builder sauceType(Sauce sauceType) {
+        public builder sauceType(Sauce sauceType) {
             this.sauceType = sauceType;
             return this;
         }
@@ -135,3 +136,6 @@ public class Pizza {
     }
 }
 ```
+
+### Consider using when:
+Object contains a lot of attributes
